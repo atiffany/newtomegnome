@@ -3,6 +3,14 @@
     height: 10em;
 }
 .header--text {
+    text-align: start;
+    vertical-align: bottom;
+    padding: 3em;
     display: inline;
-    color: #FFFFFF;
+    color: #FFFFFB;
+}
+a{
+    padding: 2em;
+    text-decoration: none;
+    color: #FFFFFB;
 }

@@ -1,6 +1,3 @@
-import { error } from "util";
-
-
 exports.up = function(knex, Promise) {
   //create users, create books read, create books to read
   return createUsersTable(knex)
@@ -49,8 +46,30 @@ function createBooksReadTable(knex) {
     return new Promise(function(resolve, reject) {
         knex.schema.createTable('booksRead', function(booksRead) {
             booksRead.increments('id');
+            booksRead.int('userId').references('id').inTable('users');
             booksRead.string('title', 255).notNullable();
             booksRead.string('author', 255).notNullable();
+
+            console.log('books read table created');
+            resolve(knex);
         })
-    })
+        .catch(error => console.log(error));
+    });
+}
+
+function createBooksToReadTable(knex) {
+    console.log('creating books to read table');
+
+    return new Promise(function(resolve, reject) {
+        knex.schema.createTable('booksToRead', function(booksToRead) {
+            booksToRead.increments('id');
+            booksToRead.int('userId').references('id').inTable('users');
+            booksToRead.string('title', 255).notNullable();
+            booksToRead.string('author', 255).notNullable();
+
+            console.log('books to read table created');
+            resolve(knex);
+        })
+        .catch(error => console.log(error));
+    });
 }

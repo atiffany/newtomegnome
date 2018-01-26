@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-browser-router';
 import './Navigation.css';
 
 class Navigation extends React.Component {
@@ -6,10 +7,10 @@ class Navigation extends React.Component {
         return (
             <div className = "header">
                 <div className = "header--text"> 
-                    <div>Tome Gnome</div>
-                    <div>Enter A New Book</div>
-                    <div>Books I've Read</div>
-                    <div>Books To Read Next</div>
+                    <Link to = '/'>Tome Gnome</Link>
+                    <Link to = '/enterbook'>Enter A New Book</Link>
+                    <Link to = '/displaybooks'>Books I've Read</Link>
+                    <Link to = '/displaybooks'>Books To Read Next</Link>
                 </div>
             </div>
         );
