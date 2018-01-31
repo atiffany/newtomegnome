@@ -1,8 +1,8 @@
 exports.up = function(knex, Promise) {
   //create users, create books read, create books to read
   return createUsersTable(knex)
-    .then(createBooksReadTable)
-    .then(createBooksToReadTable)
+    .then(createBooksTable)
+    .then(createUsersBooksTable)
     .catch(error => {
         console.log(error);
         reject(error);
@@ -12,13 +12,13 @@ exports.up = function(knex, Promise) {
 exports.down = function(knex, Promise) {
   //erase users, books read, books to read
   return knex.schema
-    .dropTableIfExists('booksToRead')
+    .dropTableIfExists('usersBooks')
     .then(function() {
-        console.log('dropping future books table');
-        return knex.schema.dropTableIfExists('booksRead');
+        console.log('dropping users\' books table');
+        return knex.schema.dropTableIfExists('books');
     })
     .then(function() {
-        console.log('dropping books read table');
+        console.log('dropping books table');
         return knex.schema.dropTableIfExists('users');
     })
     .catch(error => console.log(error));
@@ -31,7 +31,7 @@ function createUsersTable(knex) {
         knex.schema.createTable('users', function(users) {
             users.increments('id');
             users.string('username', 32).notNullable().unique('username', 'uq_username');
-            users.timestamp('createdAt').defaultTo(knex.fn.now());
+            users.string('name', 32).notNullable() ;
 
             console.log('created the users table');
             resolve(knex);
@@ -40,17 +40,16 @@ function createUsersTable(knex) {
     });
 }
 
-function createBooksReadTable(knex) {
-    console.log('creating books read table');
+function createBooksTable(knex) {
+    console.log('creating books table');
 
     return new Promise(function(resolve, reject) {
-        knex.schema.createTable('booksRead', function(booksRead) {
-            booksRead.increments('id');
-            booksRead.int('userId').references('id').inTable('users');
-            booksRead.string('title', 255).notNullable();
-            booksRead.string('author', 255).notNullable();
+        knex.schema.createTable('books', function(books) {
+            books.increments('id');
+            books.string('title', 255).notNullable();
+            books.string('author', 255).notNullable();
 
-            console.log('books read table created');
+            console.log('books table created');
             resolve(knex);
         })
         .catch(error => console.log(error));
@@ -58,16 +57,15 @@ function createBooksReadTable(knex) {
 }
 
 function createBooksToReadTable(knex) {
-    console.log('creating books to read table');
+    console.log('creating users\' books table');
 
     return new Promise(function(resolve, reject) {
-        knex.schema.createTable('booksToRead', function(booksToRead) {
-            booksToRead.increments('id');
-            booksToRead.int('userId').references('id').inTable('users');
-            booksToRead.string('title', 255).notNullable();
-            booksToRead.string('author', 255).notNullable();
+        knex.schema.createTable('usersBooks', function(usersBooks) {
+            usersBooks.int('userId').references('id').inTable('users');
+            usersBooks.int('bookId').references('id').inTable('books');
+            usersBooks.boolean('read').defaultTo(false);
 
-            console.log('books to read table created');
+            console.log('users\' books table created');
             resolve(knex);
         })
         .catch(error => console.log(error));
