@@ -12,16 +12,16 @@ module.exports = {
                 .join('users', 'userBooks', 'userBooks.userId', 'users.id')
                 .where('users.id', userId);
     },
-    insert: function(userId,book) {
+    insertBook: function(book) {
         return db('books')
             .insert(book)
-            .then(bookId => {
-                db('usersBooks')
-                    .insert(userId, bookId)
-                    .then(res => ({ "message": res }));
-            })
-            .catch(error => {
-                console.log(error);
+            .then(bookId => { res.json(bookId) });
+    },
+    insertUserBook: function(userId, bookId) {
+        return db('usersBooks')
+            .insert(userId, bookId)
+            .then(response => {
+                res.json(response);
             });
     },
    update: function(id, book) {
