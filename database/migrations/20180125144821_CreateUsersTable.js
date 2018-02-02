@@ -56,7 +56,7 @@ function createBooksTable(knex) {
     });
 }
 
-function createBooksToReadTable(knex) {
+function createUsersBooksTable(knex) {
     console.log('creating users\' books table');
 
     return new Promise(function(resolve, reject) {
