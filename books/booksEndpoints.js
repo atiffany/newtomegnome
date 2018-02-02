@@ -3,7 +3,7 @@ const books = require('./booksControllers');
 const booksRouter = express.Router();
 
 booksRouter.post('/', function(req, res) {
-    const user = req.body
+    const book = req.body
     books
         .insert(book)
         .then(function(id) {
