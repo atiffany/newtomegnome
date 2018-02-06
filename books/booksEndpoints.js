@@ -2,8 +2,8 @@ const express = require('express');
 const books = require('./booksControllers');
 const booksRouter = express.Router();
 
-booksRouter.post('/:id', function(req, res) {
-    const { userId } = req.params;
+booksRouter.post('/', function(req, res) {
+    // const { userId } = req.params;
     const book = req.body
     books
         .insertBook(book)
