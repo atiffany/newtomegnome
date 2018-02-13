@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-browser-router';
 import './App.css';

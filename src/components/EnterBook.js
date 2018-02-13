@@ -1,21 +1,43 @@
-import React from 'react';
+/** @jsx React.DOM */
+const React = require('react');
+const axios =require('axios');
+
+const ROOT_URL = 'http://localhost:3000';
 
 class EnterBook extends React.Component {
     constructor() {
         super();
+        this.state= {
+            title: '',
+            author: '',
+        };
     }
+    handleTitleInput(event) {
+        this.setState({ title : event.target.value });
+        console.log(this.yastate);
+    };
+    handleAuthorInput(event) {
+        this.setState({ author: event.target.value });
+        console.log(this.state);
+    };
+    handleFormSubmit(event) {
+        event.preventDefault();
+        const title = this.state.title;
+        const author = this.state.author;
+        axios
+            .post(`${ROOT_URL}/api/books`, { title, author })
+            .then(() => {
+                console.log('Book added');
+            })
+            .catch(() => {
+                console.log('Error occurred');
+            });
+    };
+
     render() {
         return (
-            <div>
-                <div>Enter The Book You Have Read</div>
-                <form>
-                    <input type = "text" placeholder = "enter a title" />
-                    <input type = "text" placeholder = "enter an author" />
-                    <button type = "submit">Find This Book</button>
-                </form>
-            </div>
+        <div>Hi</div>
         );
-    }
-}
-
-export default EnterBook;
+    };
+};
+module.exports = EnterBook;
