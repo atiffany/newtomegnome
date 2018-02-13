@@ -1,0 +1,35 @@
+{
+  "name": "newtomegnome",
+  "version": "1.0.0",
+  "description": "### What It Does ### Creates Databases of users, books that users have read and books the users want to read ### How It Works ### MySQL, Express, ReactJS, NodeJS",
+  "main": "knexfile.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atiffany/newtomegnome.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atiffany/newtomegnome/issues"
+  },
+  "homepage": "https://github.com/atiffany/newtomegnome#readme",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "knex": "^0.14.3",
+    "react-browser-router": "^2.1.0",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "^1.1.1"
+  },
+  "devDependencies": {}
+}

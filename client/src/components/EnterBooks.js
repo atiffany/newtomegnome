@@ -1,10 +1,9 @@
-/** @jsx React.DOM */
-const React = require('react');
-const axios =require('axios');
+import React from 'react';
+import axios from 'axios';
 
 const ROOT_URL = 'http://localhost:3000';
 
-class EnterBook extends React.Component {
+class EnterBooks extends React.Component {
     constructor() {
         super();
         this.state= {
@@ -40,4 +39,4 @@ class EnterBook extends React.Component {
         );
     };
 };
-module.exports = EnterBook;
+export default EnterBooks;

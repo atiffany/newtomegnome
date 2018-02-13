@@ -1,7 +1,6 @@
 const express = require('express');
 const books = require('./booksControllers');
 const booksRouter = express.Router();
-const data = require('../src/components/EnterBook');
 
 booksRouter.post('/', function(req, res) {
     // const { userId } = req.params;
