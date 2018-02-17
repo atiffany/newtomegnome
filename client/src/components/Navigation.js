@@ -14,6 +14,8 @@ class Navigation extends React.Component {
                     </Link>
                 </div>
                 <div className = "header--text"> 
+                    <Link to = '/signup' className = "header--text">Sign Up</Link>
+                    <Link to = '/login' className = "header--text">Log In</Link>
                     <Link to = '/enterbook' className = "header--text">Enter A New Book</Link>
                     <Link to = '/displaybooks' className = "header--text">Books I've Read</Link>
                     <Link to = '/displaybooks' className = "header--text">Books To Read Next</Link>

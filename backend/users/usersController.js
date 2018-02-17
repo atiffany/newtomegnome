@@ -1,24 +1,21 @@
 const db = require('../database/dbConfig.js');
 
 module.exports = {
-    get: function(id){
+    getWithId: function(id){
         let query = db('users');
         if (id) {
             query.where('id', id).first();
         }
         return query;
     },
-    getUsersBooks: function(userId) {
-        return db('books')
-                .select('title')
-                .join('userBooks', 'userBooks.bookId', 'books.id')
-                .join('users', 'userBooks', 'userBooks.userId', 'users.id')
-                .where('users.id', userId);
+    get: function(){
+        let query = db('users');
+        return query;
     },
     insert: function(user) {
         return db('users')
             .insert(user)
-            .then(id => ({ id: ids[0] }));
+            .then(id => ({id: id}));
     },
     update: function(id, user) {
         return db('users')

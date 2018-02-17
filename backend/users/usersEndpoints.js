@@ -3,12 +3,12 @@ const users = require('./usersController');
 const userRouter = express.Router();
 
 userRouter.post('/', function(req, res) {
-    const user = req.body
-
+    const user = req.body;
     users
         .insert(user)
-        .then(function(id) {
-            res.status(201).json(id);
+        .then(function(res) {
+            res.status(201).json(res);
+            console.log('done');
         })
         .catch(function(error) {
             res.status(500).json(error);

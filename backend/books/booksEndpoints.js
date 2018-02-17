@@ -4,7 +4,7 @@ const booksRouter = express.Router();
 
 booksRouter.post('/', function(req, res) {
     // const { userId } = req.params;
-    const book = data;
+    const book = req.body;
     books
         .insertBook(book)
         .then(function(bookId) {

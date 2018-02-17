@@ -1,0 +1,7 @@
+.box {
+    width: 20em;
+    margin-top: 8em;
+    padding: 2em;
+    border: 0.2em solid black;
+    box-shadow: .1em, .1em, .2em, .2em blue;
+}

@@ -1,12 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
-const usersEndpoints = require('./backend/users/usersEndpoints.js');
-const booksEndpoints = require('./backend/books/booksEndpoints.js');
-const usersBooksEndpoints = require('./backend/usersBooks/usersBooksEndpoints');
+const usersEndpoints = require('./users/usersEndpoints.js');
+const booksEndpoints = require('./books/booksEndpoints.js');
+const usersBooksEndpoints = require('./usersBooks/usersBooksEndpoints');
 
 const server = express();
 server.use(bodyParser.json());
+server.use(cors());
 
 server.use('/api/users', usersEndpoints);
 server.use('/api/books', booksEndpoints);

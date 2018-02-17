@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-const ROOT_URL = 'http://localhost:3000';
+const ROOT_URL = 'http://localhost:3030';
 
 class EnterBooks extends React.Component {
     constructor() {
@@ -35,7 +35,13 @@ class EnterBooks extends React.Component {
 
     render() {
         return (
-        <div>Hi</div>
+        <div>
+            <form onSubmit = {this.handleFormSubmit.bind(this)}>
+                <input type="text" onChange={this.handleAuthorInput.bind(this)} placeholder="Enter the Author" />
+                <input type="text" onChange={this.handleTitleInput.bind(this)} placeholder="Enter the Title" />
+                <button type="submit">Enter this Book</button>
+            </form>
+        </div>
         );
     };
 };
