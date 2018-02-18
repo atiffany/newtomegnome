@@ -6,9 +6,8 @@ userRouter.post('/', function(req, res) {
     const user = req.body;
     users
         .insert(user)
-        .then(function(res) {
-            res.status(201).json(res);
-            console.log('done');
+        .then(function(id) {
+            res.status(201).json(id);
         })
         .catch(function(error) {
             res.status(500).json(error);

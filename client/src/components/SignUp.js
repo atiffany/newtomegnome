@@ -12,21 +12,20 @@ class SignUp extends React.Component {
             name: '',
         };
     }
-    handleUsernameInput(input){
-        const username = input;
+    handleUsernameInput = (event) => {
+        const username = event.target.value;
         this.setState({ username });
     }
-    handleNameInput(input) {
-        const name = input;
+    handleNameInput = (event) => {
+        const name = event.target.value;
         this.setState({ name });
     }
-    handleFormSubmit(event) {
+    handleFormSubmit = (event) => {
         event.preventDefault();
-        const username = this.state.username;
-        const name = this.state.name;
-
+        const user = this.state;
+        console.log(user);
         Axios
-            .post(`${ROOT_URL}/api/users`, this.state)
+            .post(`${ROOT_URL}/api/users`, user)
             .then((res) => {
                 console.log('User created: ', res);
             })
@@ -40,8 +39,8 @@ class SignUp extends React.Component {
                 <div>Sign Up</div>
                 <div>Sign up to keep track of all your reading lists</div>
                 <form onSubmit={this.handleFormSubmit.bind(this)}>
-                    <input type = 'text' onChange={(text) => this.handleUsernameInput.bind(this)} placeholder="Create a Username" />
-                    <input type='text' onChange={(text) => this.handleNameInput.bind(this)} placeholder="Your First Name" />
+                    <input type = 'text' onChange={this.handleUsernameInput} placeholder="Create a Username" />
+                    <input type='text' onChange={this.handleNameInput} placeholder="Your First Name" />
                     <button type='submit'>Create Your Account</button>
                 </form>
             </div>
