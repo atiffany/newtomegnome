@@ -1,17 +1,26 @@
 const express = require('express');
 const books = require('./booksControllers');
+const usersBooks = require('../usersBooks/usersBooksControllers');
 const booksRouter = express.Router();
 
-booksRouter.post('/', function(req, res) {
-    // const { userId } = req.params;
+booksRouter.post('/:userId', function(req, res) {
+    const { userId } = req.params;
     const book = req.body;
     books
         .insertBook(book)
-        .then(function(bookId) {
-            res.status(201).json(bookId);
-            //const bookId = bookId;
+        .then(function(id) {
+            res.status(201).json(id);
+            const bookID = id['id'][0];
+            const userBook = { userid: userId, bookid: bookID };
+            usersBooks
+                .insert(userBook)
+                .then(function(id) {
+                    res.status(200).json(id);
+                })
+                .catch(function(error) {
+                    res.status(500).json(error);
+                });
         })
-        //.insertUserBook(userId, bookId)
         .catch(function(error) {
             res.status(500).json(error);
         });

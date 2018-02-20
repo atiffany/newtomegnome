@@ -26,12 +26,12 @@ usersBooksRouter.get('/', function(req, res) {
         });
 });
 
-usersBooksRouter.get('/user/:userid/book/:id', function(req, res) {
-    const { userid, id } = req.params;
+usersBooksRouter.get('/:userid', function(req, res) {
+    const { userid } = req.params;
     usersBooks
-        .getUsersBooks(userid, id)
-        .then(function(user) {
-            res.status(200).json(user);
+        .getUsersBooks(userid)
+        .then(function(title) {
+            res.status(200).json(title)
         })
         .catch(function(error) {
             res.status(500).json(error);

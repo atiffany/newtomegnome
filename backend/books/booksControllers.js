@@ -13,9 +13,9 @@ module.exports = {
                 .where('users.id', userId);
     },
     insertBook: function(book) {
-        return db('books')
-            .insert(book)
-            .then(bookId => { res.json(bookId) });
+            return db('books')
+                .insert(book)
+                .then(id => ({id: id}));
     },
     insertUserBook: function(userId, bookId) {
         return db('usersBooks')
