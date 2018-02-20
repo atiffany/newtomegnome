@@ -12,21 +12,27 @@ class DisplayBooks extends React.Component {
 
     }
     componentDidMount () {
-        let booksList = axios
+        axios
             .get(`${ROOT_URL}/api/books/all`)
-            .then(() => {
+            .then((res) => {
                 console.log('works');
+                console.log(res.data);
+                this.setState({ books: res.data })
+                console.log(this.state.books);
             })
             .catch((error) => {
                 console.log('does not work: ', error);
             });
-        console.log(booksList);
-       // this.setState({ books: books[0] });
                 
     }
     render() {
         return (
-               <div>{this.state.books}</div>
+            <div>
+                <div>Books Our Users Have Read</div>
+               {this.state.books.map(item => {
+                    return <div key={item.id}>{item.title} by {item.author}</div>
+               })}
+            </div>
         );
     }
 }
