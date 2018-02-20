@@ -1,5 +1,5 @@
 import React from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import './SignUp.css';
 
 const ROOT_URL = 'http://localhost:3030';
@@ -24,10 +24,11 @@ class SignUp extends React.Component {
         event.preventDefault();
         const user = this.state;
         console.log(user);
-        Axios
+        axios
             .post(`${ROOT_URL}/api/users`, user)
             .then((res) => {
-                console.log('User created: ', res);
+                console.log('User created: ', res.data.id);
+                const userId = res.data.id;
             })
             .catch((error) => {
                 console.log('User not created: ', error);
