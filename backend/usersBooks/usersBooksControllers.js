@@ -6,8 +6,7 @@ module.exports = {
         return query;
     },
     getUsersBooks: function(userId) {
-        let query = db('usersBooks');
-        return query
+        return db('usersBooks')
             .select('books.title', 'books.author')
             .where('usersBooks.userId', userId)
             //.where('usersBooks.userid', userId)

@@ -26,7 +26,7 @@ booksRouter.post('/:userId', function(req, res) {
         });
 });
 
-booksRouter.get('/', function(req, res) {
+booksRouter.get('/all', function(req, res) {
     books
         .get()
         .then(function(books) {
@@ -36,28 +36,11 @@ booksRouter.get('/', function(req, res) {
             res.status(500).json(error);
         });
 });
-
-booksRouter.get('/:id', function(req, res) {
-    const { id } = req.params;
+//new and working?
+booksRouter.get('/:userId', function(req, res) {
+    const { userId } = req.params;
     books
-        .get(id)
-        .then(function(books) {
-            if(user) {
-                res.status(200).json(books);
-            } else {
-                res.status(404).json(null);
-            }
-        })
-        .catch(function(error) {
-            res.status(500).json(error);
-        });
-});
-
-//fix this nasty mess
-booksRouter.get('/:id/books', function(req, res) {
-    const { id } = req.params;
-    books
-        .getUsersBooks(id)
+        .getUsersBooks(userId)
         .then(function(books) {
             res.status(200).json(books);
         })

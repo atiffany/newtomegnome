@@ -6,11 +6,10 @@ module.exports = {
         return query;
     },
     getUsersBooks: function(userId) {
-        return db('books')
-                .select('title')
-                .join('userBooks', 'userBooks.bookId', 'books.id')
-                .join('users', 'userBooks', 'userBooks.userId', 'users.id')
-                .where('users.id', userId);
+        return db('usersBooks')
+            .select('books.title', 'books.author')
+            .where('usersBooks.userId', userId)
+            .join('books', 'books.id', 'usersBooks.bookid')
     },
     insertBook: function(book) {
             return db('books')

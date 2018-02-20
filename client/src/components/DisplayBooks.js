@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-const ROOT_URL = 'http://localhost:3000';
+const ROOT_URL = 'http://localhost:3030';
 
 class DisplayBooks extends React.Component {
     constructor() {
@@ -12,17 +12,17 @@ class DisplayBooks extends React.Component {
 
     }
     componentDidMount () {
-        let books = axios
-                        .get(`${ROOT_URL}/api/books`)
-                        .then(() => {
-                            console.log('works');
-                        })
-                        .then(books => {
-                            this.setState({ books });
-                        })
-                        .catch(() => {
-                            console.log('does not work');
-                        });
+        let booksList = axios
+            .get(`${ROOT_URL}/api/books/all`)
+            .then(() => {
+                console.log('works');
+            })
+            .catch((error) => {
+                console.log('does not work: ', error);
+            });
+        console.log(booksList);
+       // this.setState({ books: books[0] });
+                
     }
     render() {
         return (
