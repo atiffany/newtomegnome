@@ -28,8 +28,12 @@ class Login extends React.Component {
         axios
             .get(`${ROOT_URL}/api/users/user/${username}`)
             .then((res) => {
-                console.log('User Exists ', res);
-                this.props.history.push('/displaybooks');
+                if (res.data.length > 0) {
+                    console.log('User Exists ', res);
+                    this.props.history.push('/displaybooks');
+                } else {
+                    console.log('No User Found');
+                }
             })
             .catch((err) => {
                 console.log('User not Found: ', err.response);
