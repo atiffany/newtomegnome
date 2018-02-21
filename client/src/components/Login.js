@@ -25,12 +25,13 @@ class Login extends React.Component {
         const name = this.state.name;
 
         Axios
-            .post(`${ROOT_URL}/api/users`, { username, name })
+            .get(`${ROOT_URL}/api/users`, { username, name })
             .then(() => {
-                console.log('User created');
+                console.log('User Exists');
+                this.props.history.push('/displaybooks');
             })
             .catch(() => {
-                console.log('User not created');
+                console.log('User not Found');
             });
     }
     render() {
