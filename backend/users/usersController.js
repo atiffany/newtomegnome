@@ -1,16 +1,13 @@
 const db = require('../database/dbConfig.js');
 
 module.exports = {
-    getWithId: function(id){
-        let query = db('users');
-        if (id) {
-            query.where('id', id).first();
-        }
-        return query;
-    },
     get: function(){
         let query = db('users');
         return query;
+    },
+    getUser: function(username){
+        return db('users')
+            .where('username', username);
     },
     insert: function(user) {
         return db('users')

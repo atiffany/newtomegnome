@@ -1,6 +1,5 @@
 const express = require('express');
 const books = require('./booksControllers');
-const usersBooks = require('../usersBooks/usersBooksControllers');
 const booksRouter = express.Router();
 
 booksRouter.post('/:userId', function(req, res) {

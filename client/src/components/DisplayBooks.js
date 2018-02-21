@@ -15,13 +15,11 @@ class DisplayBooks extends React.Component {
         axios
             .get(`${ROOT_URL}/api/books/all`)
             .then((res) => {
-                console.log('works');
-                console.log(res.data);
-                this.setState({ books: res.data })
-                console.log(this.state.books);
+                console.log('displaying books works');
+                this.setState({ books: res.data });
             })
             .catch((error) => {
-                console.log('does not work: ', error);
+                console.log('displaying books does not work: ', error);
             });
                 
     }

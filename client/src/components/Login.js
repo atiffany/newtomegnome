@@ -1,5 +1,5 @@
 import React from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 
 const ROOT_URL = 'http://localhost:3030';
 
@@ -11,35 +11,36 @@ class Login extends React.Component {
             name: '',
         };
     }
-    handleUsernameInput(input){
-        const username = input;
+    handleUsernameInput= (event) => {
+        const username = event.target.value;
         this.setState({ username });
     }
-    handleNameInput(input) {
-        const name = input;
+    handleNameInput = (event) => {
+        const name = event.target.value;
         this.setState({ name });
     }
     handleFormSubmit(event) {
         event.preventDefault();
         const username = this.state.username;
-        const name = this.state.name;
+        console.log(username);
+        //const name = this.state.name;
 
-        Axios
-            .get(`${ROOT_URL}/api/users`, { username, name })
-            .then(() => {
-                console.log('User Exists');
+        axios
+            .get(`${ROOT_URL}/api/users/user/${username}`)
+            .then((res) => {
+                console.log('User Exists ', res);
                 this.props.history.push('/displaybooks');
             })
-            .catch(() => {
-                console.log('User not Found');
+            .catch((err) => {
+                console.log('User not Found: ', err.response);
             });
     }
     render() {
         return (
             <div>
                 <form onSubmit={this.handleFormSubmit.bind(this)}>
-                    <input type = 'text' onChange={(text) => this.handleUsernameInput.bind(this)} placeholder="Create a Username" />
-                    <input type='text' onChange={(text) => this.handleNameInput.bind(this)} placeholder="Your First Name" />
+                    <input type = 'text' onChange={this.handleUsernameInput} placeholder="Create a Username" />
+                    <input type='text' onChange={this.handleNameInput} placeholder="Your First Name" />
                     <button type='submit'>Create Your Account</button>
                 </form>
             </div>

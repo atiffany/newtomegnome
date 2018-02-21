@@ -14,39 +14,26 @@ userRouter.post('/', function(req, res) {
         });
 });
 
-userRouter.get('/', function(req, res) {
+userRouter.get('/all', function(req, res) {
     users
         .get()
         .then(function(users) {
             res.status(200).json(users);
         })
-        .catch(function(error) {
-            res.status(500).json(error);
+        .catch(function(err) {
+            res.status(500).json(err);
         });
 });
 
-userRouter.get('/:id', function(req, res) {
-    const { id } = req.params;
+userRouter.get('/user/:username', function(req, res) {
+    const { username } = req.params;
+    console.log(username);
     users
-        .get(id)
+        .getUser(username)
         .then(function(user) {
             if(user) {
                 res.status(200).json(user);
-            } else {
-                res.status(404).json(null);
             }
-        })
-        .catch(function(error) {
-            res.status(500).json(error);
-        });
-});
-
-userRouter.get('/:id/books', function(req, res) {
-    const { id } = req.params;
-    users
-        .getUsersBooks(id)
-        .then(function(books) {
-            res.status(200).json(books);
         })
         .catch(function(error) {
             res.status(500).json(error);

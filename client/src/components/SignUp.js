@@ -28,9 +28,8 @@ class SignUp extends React.Component {
             .post(`${ROOT_URL}/api/users`, user)
             .then((res) => {
                 console.log('User created: ', res.data.id);
-                const userId = res.data.id;
+                // const userId = res.data.id;
                 this.props.history.push('/displaybooks')
-                console.log(this.props.history);
             })
             .catch((error) => {
                 console.log('User not created: ', error);
