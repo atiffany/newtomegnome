@@ -11,6 +11,16 @@ module.exports = {
             .where('usersBooks.userId', userId)
             .join('books', 'books.id', 'usersBooks.bookid')
     },
+    getUsersBooksWithUsername: function(username) {
+        return db('users')
+        .join('usersBooks', 'usersBooks.userid', 'users.id')
+        .where('users.username', username)
+        .join('books', 'books.id', 'usersBooks.bookid')
+        .select('books.title', 'books.author')
+
+
+        
+    },
     insertBook: function(book) {
             return db('books')
                 .insert(book)

@@ -47,6 +47,17 @@ booksRouter.get('/:userId', function(req, res) {
             res.status(500).json(error);
         });
 });
+booksRouter.get('/user/:username', function(req, res) {
+    const { username } = req.params;
+    books
+        .getUsersBooksWithUsername()
+        .then(function(books) {
+            res.status(200).json(books);
+        })
+        .catch(function(error) {
+            res.status(500).json(error);
+        });
+})
 
 booksRouter.put('/:id', function(req, res) {
     const { id } = req.params;

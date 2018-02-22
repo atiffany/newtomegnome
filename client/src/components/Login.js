@@ -4,50 +4,24 @@ import axios from 'axios';
 const ROOT_URL = 'http://localhost:3030';
 
 class Login extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            username: '',
-            name: '',
-        };
-    }
-    handleUsernameInput= (event) => {
-        const username = event.target.value;
-        this.setState({ username });
-    }
-    handleNameInput = (event) => {
-        const name = event.target.value;
-        this.setState({ name });
-    }
-    handleFormSubmit(event) {
-        event.preventDefault();
-        const username = this.state.username;
-        console.log(username);
-        //const name = this.state.name;
 
+    handleClick = () => {
         axios
-            .get(`${ROOT_URL}/api/users/user/${username}`)
+            .get(`${ROOT_URL}/auth/google`)
             .then((res) => {
-                if (res.data.length > 0) {
-                    console.log('User Exists ', res);
-                    this.props.history.push('/displaybooks');
-                } else {
-                    console.log('No User Found');
-                }
+                console.log(res);
             })
             .catch((err) => {
-                console.log('User not Found: ', err.response);
+                console.log(err);
             });
     }
     render() {
         return (
             <div>
-                <form onSubmit={this.handleFormSubmit.bind(this)}>
-                    <input type = 'text' onChange={this.handleUsernameInput} placeholder="Create a Username" />
-                    <input type='text' onChange={this.handleNameInput} placeholder="Your First Name" />
-                    <button type='submit'>Create Your Account</button>
-                </form>
+                <div>Log In With Google</div>
+                <div onClick={this.handleClick}>Click Here</div>
             </div>
+
         );
     }
 }
