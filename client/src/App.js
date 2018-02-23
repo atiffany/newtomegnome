@@ -17,7 +17,7 @@ class App extends Component {
             <Route path = '/' component={Navigation} />
             <Route path = '/' exact component={Welcome} />
             <Route path = '/enterbook' component={EnterBooks} />
-            <Route path = '/displaybooks' component={DisplayBooks} />
+            <Route path = '/auth/google/redirect' component={DisplayBooks} />
             <Route path = '/signup' component={SignUp} />
             <Route path = '/login' component={Login} />
           </div>

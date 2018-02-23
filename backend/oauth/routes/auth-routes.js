@@ -18,4 +18,8 @@ authRouter.get('/google', passport.authenticate('google', {
     scope: ['profile']
 }));
 
+authRouter.get('/google/redirect', passport.authenticate('google'), (req, res) => {
+    res.send('getting content you are logged in homey');
+})
+
 module.exports = authRouter;

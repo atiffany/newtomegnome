@@ -2,6 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true,
+};
+
 const passportSetup = require('./oauth/config/passport-setup.js');
 
 const authEndpoints = require('./oauth/routes/auth-routes.js');
@@ -11,7 +16,7 @@ const usersBooksEndpoints = require('./usersBooks/usersBooksEndpoints');
 
 const server = express();
 server.use(bodyParser.json());
-server.use(cors());
+server.use(cors(corsOptions));
 
 server.use('/auth', authEndpoints);
 server.use('/api/users', usersEndpoints);
